@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.container {
+    display: flex; /* Use flexbox to align items horizontally */
+    gap: 20px; /* Add space between the two boards */
+}
+
+#board, #pieces {
+    width: 247px;
+    height: 255px;
+    border: 2px solid #256515;
+
+}
+
+#board img, #pieces img {
+    width: 79px;
+    height: 79px;
+    border: 1px solid yellowgreen;
+}
