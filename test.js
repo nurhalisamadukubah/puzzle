@@ -4,7 +4,7 @@ var columns = 3;
 var currTile;
 var otherTile;
 
-var turns = 0;
+var gameActive = false; //check if the game is active
 
 window.onload = function() {
     //initialize the 3x3 board
@@ -23,6 +23,38 @@ window.onload = function() {
 
             document.getElementById("board").append(tile);
         }
+    }
+    //timer
+    document.getElementById('startbutton').addEventListener('click', startTimer);
+
+    var timer;
+    var timeRemaining = 10; // 3 minutes in seconds
+
+    function startTimer() {
+        clearInterval(timer);
+        timeRemaining = 10; // Reset the time
+        gameActive = true; // Set game as active
+        timer = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+        var minutes = Math.floor(timeRemaining / 60);
+        var seconds = timeRemaining % 60;
+
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
+
+        document.getElementById('time').textContent = `${minutes}:${seconds}`;
+
+        if (timeRemaining <= 0) {
+            clearInterval(timer);
+            gameActive = false; // Set game as inactive
+            alert('Time is up!');
+            return;
+        }
+
+        timeRemaining--;
     }
 
     //Salsa20 Implementation
@@ -413,26 +445,31 @@ window.onload = function() {
 };
 
 function dragStart() {
+    if (!gameActive) return; // menghentikan permainan
     currTile = this; // this refers to the image that was clicked on for dragging
 }
 
 function dragOver(e) {
+    if (!gameActive) return;
     e.preventDefault();
 }
 
 function dragEnter(e) {
+    if (!gameActive) return;
     e.preventDefault();
 }
 
 function dragLeave() {
-
+    if (!gameActive) return;
 }
 
 function dragDrop() {
+    if (!gameActive) return;
     otherTile = this; // this refers to the image that is being dropped on
 }
 
 function dragEnd() {
+    if (!gameActive) return;
     if (currTile.src.includes("blank2")) {
         return;
     }
@@ -440,7 +477,8 @@ function dragEnd() {
     let otherImg = otherTile.src;
     currTile.src = otherImg;
     otherTile.src = currImg;
-
-    turns += 1;
-    document.getElementById("turns").innerText = turns;
 }
+
+
+
+
