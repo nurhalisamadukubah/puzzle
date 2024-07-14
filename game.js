@@ -1,9 +1,7 @@
 var rows = 3;
 var columns = 3;
-
 var currTile;
 var otherTile;
-
 var gameActive = false; //check if the game is active
 
 window.onload = function() {
@@ -17,6 +15,7 @@ window.onload = function() {
 
     function startTimer() {
         clearInterval(timer);
+        resetBoard(); // Reset the board to initial state
         timeRemaining = 10; // Reset the time
         gameActive = true; // Set game as active
         timer = setInterval(updateTimer, 1000);
@@ -32,7 +31,7 @@ window.onload = function() {
 
         document.getElementById('time').textContent = `${minutes}:${seconds}`;
 
-        if (timeRemaining <= 0) {
+        if (timeRemaining == 0) {
             clearInterval(timer);
             gameActive = false; // Set game as inactive
             alert('Time is up!');
@@ -79,24 +78,27 @@ function dragEnd() {
 }
 
 function initGame() {
-    function setListener(elem){
-        elem.addEventListener("dragstart", dragStart); //click on image to drag
-        elem.addEventListener("dragover", dragOver);   //drag an image
-        elem.addEventListener("dragenter", dragEnter); //dragging an image into another one
-        elem.addEventListener("dragleave", dragLeave); //dragging an image away from another one
-        elem.addEventListener("drop", dragDrop);       //drop an image onto another one
-        elem.addEventListener("dragend", dragEnd);     //after you completed dragDrop
-    }
+    createBoard();
+    createPieces();
+}    
+
+function createBoard() {
+    const board = document.getElementById("board");
+    board.innerHTML = ""; // Clear the board
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let tile = document.createElement("img");
             tile.src = "./images/blank2.jpg";
             setListener(tile);
-            document.getElementById("board").append(tile);
+            board.append(tile);
         }
     }
+}
 
+function createPieces() {
+    const pieces = document.getElementById("pieces");
+    pieces.innerHTML = ""; // Clear the pieces
     var key = []; for (i = 0; i < 16; i++) key[i] = i+1;
     key = key; for (i = 16; i < 32; i++) key[i] = i-16+1;
     var nonce = []; for (i = 0; i < 8; i++) nonce[i] = i+1+100;
@@ -140,12 +142,23 @@ function initGame() {
         if(img){
             var imgElement = document.createElement("img");
             imgElement.src = img;
-            setListener(imgElement);
-            
-            document.getElementById("pieces").append(imgElement);
+            setListener(imgElement);            
+            pieces.append(imgElement);
         }
     });
 }
 
+function setListener(elem){
+        elem.addEventListener("dragstart", dragStart); //click on image to drag
+        elem.addEventListener("dragover", dragOver);   //drag an image
+        elem.addEventListener("dragenter", dragEnter); //dragging an image into another one
+        elem.addEventListener("dragleave", dragLeave); //dragging an image away from another one
+        elem.addEventListener("drop", dragDrop);       //drop an image onto another one
+        elem.addEventListener("dragend", dragEnd);     //after you completed dragDrop
+}
 
+function resetBoard() {
+    createBoard(); // Clear and reinitialize the board
+    createPieces(); // Clear and reinitialize the pieces
+}
 
