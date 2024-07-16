@@ -4,8 +4,6 @@ var columns = 3;
 var currTile;
 var otherTile;
 
-var turns = 0;
-
 window.onload = function() {
     //initialize the 3x3 board
     for (let r = 0; r < rows; r++) {
