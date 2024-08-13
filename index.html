@@ -1,27 +1,25 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Puzzle Prototype</title>
-        <link rel="stylesheet" href="puzzle.css">
-    </head>
-
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Prototype</title>
+    <link rel="stylesheet" href="puzzle.css">
+</head>
+<body>
+    <div class="main-container">
+        <h2>Time: <span id="time">60s</span></h2>
         <div class="container"> 
             <div id="board"></div>
             <div id="pieces"></div>
-            <h2>Time: <span id="time">60s</span></h2>
         </div>
-        <div>
+        <div class="button-container">
             <button id='startbutton'>Start</button> 
         </div>
-    </body>
+    </div>
     <footer>
         <script src="salsa20.js"></script>
         <script src="game.js"></script>
-
     </footer>
+</body>
 </html>
-

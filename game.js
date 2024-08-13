@@ -32,7 +32,7 @@ function updateTimer() {
     if (timeRemaining == 0) {
         clearInterval(timer);
         gameActive = false; // Set game as inactive
-        alert('Time is up!');
+        alert('WAKTU HABIS');
         return;
     }
 
@@ -121,7 +121,7 @@ function createPieces() {
     posDict = {};
     for (i = 0; i < hexOutputArray.length; i++) {
         posDict[i] = imgArr[((parseInt(hexOutputArray[i], 16)) % 9)];
-
+        //console.log("i : " + i +  " , element: " + hexOutputArray[i] + " ,  dec : " + (parseInt(hexOutputArray[i], 16)) + " ,  dec mod 9 : " + ((parseInt(hexOutputArray[i], 16)) % 9));
         var imgInd = ((parseInt(hexOutputArray[i], 16)) % 9)
         if (imgArr[imgInd] != false) {
             var imgElement = document.createElement("img");
@@ -168,7 +168,7 @@ function checkBoard() {
             return false; // If any tile is not in the correct position, return false
         }
     }
-    alert('Congratulations! You have completed the puzzle!');
+    alert('BERHASIL!');
     clearInterval(timer); // Stop the timer when the game is completed
     gameActive = false; // Set game as inactive
     return true; // All tiles are in the correct position

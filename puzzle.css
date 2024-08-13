@@ -1,22 +1,42 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
+h2 {
+    margin-bottom: 20px;
+}
+
 .container {
-    display: flex; /* Use flexbox to align items horizontally */
-    gap: 20px; /* Add space between the two boards */
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 #board, #pieces {
     width: 247px;
     height: 255px;
     border: 2px solid #256515;
-
 }
 
 #board img, #pieces img {
     width: 79px;
     height: 79px;
     border: 1px solid yellowgreen;
+}
+
+.button-container {
+    margin-top: 20px;
 }
