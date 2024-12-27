@@ -107,7 +107,7 @@ function createPieces() {
 
     var sigma = [0x61707865, 0x3120646E, 0x79622D36, 0x6B206574];
 
-    var salsa20 = new Salsa20(key, nonce, counter, sigma); //test comment
+    var salsa20 = new Salsa20(key, nonce, counter, sigma); //test commentt
     var hexOutputArray = salsa20.getHexStringArray(64);
     var imgArr = [
         "./images/1.jpg",
