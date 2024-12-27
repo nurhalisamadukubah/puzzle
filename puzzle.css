@@ -26,8 +26,8 @@ h2 {
 }
 
 #board, #pieces {
-    width: 247px;
-    height: 255px;
+    width: 322px;
+    height: 333px;
     border: 2px solid #256515;
 }
 

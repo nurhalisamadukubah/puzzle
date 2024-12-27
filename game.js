@@ -1,11 +1,14 @@
-var rows = 3;
-var columns = 3;
+var rows = 4;
+var columns = 4;
 var currTile;
 var otherTile;
 var gameActive = false; // check if the game is active
 var timer;
 var timeRemaining; // 3 minutes in seconds
-var correctOrder = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"];
+var correctOrder = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", 
+                    "5.jpg", "6.jpg", "7.jpg", "8.jpg",
+                    "9.jpg","10.jpg","11.jpg","12.jpg",
+                    "13.jpg","14.jpg","15.jpg","16.jpg"];
 
 initGame();
 
@@ -14,7 +17,7 @@ document.getElementById('startbutton').addEventListener('click', startTimer);
 function startTimer() {
     clearInterval(timer);
     resetBoard(); // Reset the board to initial state
-    timeRemaining = 15; // Reset the time to 3 minutes
+    timeRemaining = 25; // Reset the time to 3 minutes
     gameActive = true; // Set game as active
     timer = setInterval(updateTimer, 1000);
 }
@@ -116,13 +119,20 @@ function createPieces() {
         "./images/7.jpg",
         "./images/8.jpg",
         "./images/9.jpg",
+        "./images/10.jpg",
+        "./images/11.jpg",
+        "./images/12.jpg",
+        "./images/13.jpg",
+        "./images/14.jpg",
+        "./images/15.jpg",
+        "./images/16.jpg",
     ]
 
     posDict = {};
     for (i = 0; i < hexOutputArray.length; i++) {
-        posDict[i] = imgArr[((parseInt(hexOutputArray[i], 16)) % 9)];
-        //console.log("i : " + i +  " , element: " + hexOutputArray[i] + " ,  dec : " + (parseInt(hexOutputArray[i], 16)) + " ,  dec mod 9 : " + ((parseInt(hexOutputArray[i], 16)) % 9));
-        var imgInd = ((parseInt(hexOutputArray[i], 16)) % 9)
+        posDict[i] = imgArr[((parseInt(hexOutputArray[i], 16)) % 16)];
+        console.log("i : " + i +  " , element: " + hexOutputArray[i] + " ,  dec : " + (parseInt(hexOutputArray[i], 16)) + " ,  dec mod 16 : " + ((parseInt(hexOutputArray[i], 16)) % 16));
+        var imgInd = ((parseInt(hexOutputArray[i], 16)) % 16)
         if (imgArr[imgInd] != false) {
             var imgElement = document.createElement("img");
             imgElement.src = imgArr[imgInd];
@@ -131,7 +141,7 @@ function createPieces() {
             document.getElementById("pieces").append(imgElement);
             imgArr[imgInd] = false;
         }
-        if (i == 8) break;
+        if (i == 15) break;
     }
 
     imgArr.forEach(img => {

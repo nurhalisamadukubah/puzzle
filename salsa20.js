@@ -254,10 +254,10 @@ var Salsa20 = (function () {
 
             
         }
-        // console.log("X row after round : " + i)
+        console.log("X row after round : " + i)
         var _x = [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15];
         for (i = 0; i < 16; i++){
-            // console.log("x-"+(i), (_x[i] >>> 0).toString(16));
+            console.log("x-"+(i), (_x[i] >>> 0).toString(16));
         }
 
         z0 = x0 + j0;
@@ -279,10 +279,10 @@ var Salsa20 = (function () {
         x13 += j13;
         x14 += j14;
         x15 += j15;
-        // console.log("before LE : " + i)
-        var _x = [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15];
+        console.log("After LE : " + i)
+        var _x = [z0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15];
         for (i= 0; i < 16; i++){
-            //console.log("x-"+(i), (_x[i] >>> 0).toString(16));
+            console.log("x-"+(i), (_x[i] >>> 0).toString(16));
         }
 
 
